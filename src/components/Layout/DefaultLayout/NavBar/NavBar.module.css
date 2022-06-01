@@ -1,0 +1,13 @@
+.NavBar {
+    position: fixed;
+    display: flex;
+    height: 100%;
+    width: 2%;
+    left: 0;
+    top: 0;
+    background-color: #570a57;
+}
+.alignNavBar {
+    align-items: center;
+    justify-content: center;
+}
