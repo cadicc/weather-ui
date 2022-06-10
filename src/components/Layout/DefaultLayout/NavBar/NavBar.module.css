@@ -5,9 +5,29 @@
     width: 2%;
     left: 0;
     top: 0;
-    background-color: #570a57;
+    background-color: #1f1f1f;
 }
 .alignNavBar {
     align-items: center;
     justify-content: center;
+}
+.posIcon {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    flex-flow: column;
+    align-items: center;
+}
+.navButton {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 5px 0;
+}
+.navButton:hover {
+    background-color: #f2f2f277 !important;
+}
+button.navButton {
+    border-radius: 0 !important;
+    padding: 10px 0 !important;
 }

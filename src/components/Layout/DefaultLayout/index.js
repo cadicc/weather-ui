@@ -9,9 +9,9 @@ const DefaultLayout = ({ children }) => {
     `;
     return (
         <div className="layout">
-            <Header />
             <NavBar />
             <Container maxWidth="xl">
+                <Header />
                 <DivContent className="content">{children}</DivContent>
             </Container>
         </div>
