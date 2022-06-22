@@ -1,93 +1,204 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
-// import axios from 'axios';
-import Grid from '@mui/material/Grid';
-import Item from '@mui/material/ListItem';
-import { IconButton, Input } from '@mui/material';
+import { useState, useRef } from 'react';
+import { IconButton } from '@mui/material';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMoon, faSearch } from '@fortawesome/free-solid-svg-icons';
-import styled from '@emotion/styled';
+import { css } from '@emotion/css';
 import { useSelector, useDispatch } from 'react-redux';
 import HeadlessTippy from '@tippyjs/react/headless';
-import { KEY_WEATHER } from '~/features/KeyWeather';
-import { css } from '@emotion/css';
+import { set_value } from '~/features/Search';
+import { get_swap } from '~/features/SwapNavBar';
+import { current_weather } from '~/features/Current';
+import useAxiosSearch from '~/service/searchApi';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
 
 const Header = () => {
-    const DivHeader = styled.div`
-        position: fixed;
-        display: flex;
-        height: 40px;
-        width: 98%;
-        right: 0;
-        top: 0;
-        background-color: #0063b1;
-        color: #fff;
-    `;
     const [searchInput, setSearchInput] = useState('');
-    // const [searchSug, setSearchSug] = useState('');
-    const [searchValue, setSearchValue] = useState([]);
     const title = useSelector((state) => state.switch.value);
+    const swap = useSelector((state) => state.swap.value);
     const dispatch = useDispatch();
-
-    useEffect(() => {
-        // axios
-        //     .get(`https://api.weatherapi.com/v1/search.json?key=f0106112791a4d5486c104334223105&q=Hanoi`)
-        //     .then(function (res) {
-        //         setSearchValue(res.data);
-        //         console.log(res.data);
-        //     });
-    }, []);
+    const searchRef = useRef();
+    const { searchApi } = useAxiosSearch();
 
     return (
-        <DivHeader>
-            <Grid container spacing={0}>
-                <Grid item xs={10}>
-                    <Item style={{ fontWeight: 600, fontSize: 14 }}>{title}</Item>
-                </Grid>
-                <Grid item xs={2} style={{ justifyContent: 'flex-end' }}>
-                    <Item>
+        <div
+            className={css`
+                display: flex;
+            `}
+        >
+            <div
+                className={css`
+                    position: fixed;
+                    display: flex;
+                    justify-content: center;
+                    width: 3%;
+                    height: 3.2%;
+                    background-color: #1f1f1f;
+                    top: 0;
+                    left: 0;
+                    padding: 10px 0;
+                `}
+                onClick={() => dispatch(get_swap(!swap))}
+            >
+                <span>
+                    <IconButton aria-label="navigation" size="small">
+                        <FontAwesomeIcon
+                            icon={faBars}
+                            inverse
+                            className={css`
+                                padding: 0 5px;
+                            `}
+                        />
+                    </IconButton>
+                </span>
+            </div>
+            <div
+                className={css`
+                    display: flex;
+                    background-color: #20253d;
+                    position: fixed;
+                    width: 96.5%;
+                    top: 0;
+                    right: 0;
+                    z-index: 1;
+                    align-items: center;
+                    color: #ffffff;
+                    padding: 5px;
+                `}
+            >
+                <div
+                    className={css`
+                        width: 67%;
+                    `}
+                >
+                    <div
+                        className={css`
+                            font-weight: bold;
+                            font-size: 14px;
+                            padding-left: 10px;
+                        `}
+                    >
+                        {title}
+                    </div>
+                </div>
+                <div
+                    className={css`
+                        width: 30%;
+                    `}
+                >
+                    <div
+                        className={css`
+                            display: flex;
+                            justify-content: flex-end;
+                        `}
+                    >
                         <IconButton aria-label="Dark" size="small">
                             <FontAwesomeIcon icon={faMoon} inverse />
                         </IconButton>
-                        <div>
+                        <div
+                            className={css`
+                                // display: flex;
+                                // align-items: center;
+                                // background-color: #ffffffc4;
+                                padding: 5px;
+                            `}
+                        >
                             <HeadlessTippy
                                 interactive
-                                visible={searchValue.length > 0}
+                                visible={searchInput.length > 0}
                                 render={(attrs) => (
                                     <div className="box-search" tabIndex="-1" {...attrs}>
                                         <ul
                                             className={css`
                                                 list-style: none;
+                                                background-color: #ffffff9e;
+                                                margin: 0;
+                                                padding: 0;
+                                                color: #000;
+                                                cursor: pointer;
+                                                width: 217px;
+                                                margin-left: 17px;
+                                                margin-top: -3px;
                                             `}
                                         >
-                                            {/* {searchValue.map((val) => (
-                                                <li key={val.id}>{val.name}</li>
-                                            ))} */}
+                                            {searchApi.map((result) => {
+                                                return (
+                                                    <li
+                                                        key={result.id}
+                                                        onClick={() => {
+                                                            dispatch(current_weather(result.name));
+                                                            setSearchInput('');
+                                                        }}
+                                                        className={css`
+                                                            padding: 10px;
+                                                            &:hover {
+                                                                background-color: #ffffffc4;
+                                                            }
+                                                        `}
+                                                    >
+                                                        <h4
+                                                            className={css`
+                                                                margin: 5px 0;
+                                                            `}
+                                                        >
+                                                            {result.name}
+                                                        </h4>
+                                                        <p
+                                                            className={css`
+                                                                margin: 5px 0;
+                                                            `}
+                                                        >{`${result.name}, ${result.country}`}</p>
+                                                    </li>
+                                                );
+                                            })}
                                         </ul>
                                     </div>
                                 )}
                             >
-                                <Input
+                                <input
                                     placeholder="Tìm kiếm"
+                                    ref={searchRef}
                                     type="text"
                                     value={searchInput}
                                     onChange={(e) => {
                                         setSearchInput(e.target.value);
+                                        dispatch(set_value(e.target.value));
+                                        searchRef.current.focus();
                                     }}
-                                ></Input>
+                                    className={css`
+                                        border: 0px;
+                                        padding: 7px 5px;
+                                        height: 50%;
+                                        width: 125%;
+                                        &:focus-visible {
+                                            outline: none;
+                                        }
+                                    `}
+                                ></input>
                             </HeadlessTippy>
                             <IconButton
                                 aria-label="Search"
                                 size="small"
-                                onClick={() => dispatch(KEY_WEATHER(searchInput), console.log(1))}
+                                onClick={() => dispatch(current_weather(searchInput))}
+                                className={css`
+                                    position: absolute !important;
+                                    right: 10px;
+                                    top: 10px;
+                                `}
                             >
-                                <FontAwesomeIcon icon={faSearch} inverse />
+                                <FontAwesomeIcon
+                                    icon={faSearch}
+                                    inverse
+                                    className={css`
+                                        color: #000;
+                                    `}
+                                />
                             </IconButton>
                         </div>
-                    </Item>
-                </Grid>
-            </Grid>
-        </DivHeader>
+                    </div>
+                </div>
+            </div>
+        </div>
     );
 };
 export default Header;

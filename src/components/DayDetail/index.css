@@ -1,0 +1,16 @@
+.detail {
+    display: grid;
+    grid-template-columns: 2fr 2fr 2fr 2.5fr;
+    grid-column-gap: 30px;
+}
+.grid-chart {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-auto-rows: 1fr 1fr;
+}
+#detail-1 {
+    display: none;
+}
+#detail-2 {
+    display: none;
+}

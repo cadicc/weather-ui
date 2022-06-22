@@ -4,3 +4,8 @@
 #hour-2 {
     display: none;
 }
+tspan {
+    fill: #ffffff !important;
+    font-size: 12px !important;
+    text-transform: lowercase;
+}

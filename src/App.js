@@ -3,7 +3,6 @@ import Box from '@mui/material/Box';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { publicRoutes } from '~/routes';
 import { DefaultLayout } from '~/components/Layout/';
-import styles from './App.module.css';
 
 import { Global, css } from '@emotion/react';
 
@@ -11,14 +10,15 @@ function App() {
     return (
         <Router>
             <Global
-                styles={css`
+                className={css`
                     :root {
                         --primary: #242f9b;
                         --secondary: #ffffff;
+                        font-family: 'Manrope', sans-serif;
                     }
                 `}
             />
-            <div className={styles.App}>
+            <div>
                 <Box
                     sx={{
                         width: 1920,

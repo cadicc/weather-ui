@@ -12,7 +12,10 @@ export const switchSlice = createSlice({
         SWITCH_HISTORICAL: (state) => {
             state.value = 'Historical Weather';
         },
+        SWITCH_FAVORITES: (state) => {
+            state.value = 'Favorites';
+        },
     },
 });
-export const { SWITCH_HOME, SWITCH_HISTORICAL } = switchSlice.actions;
+export const { SWITCH_HOME, SWITCH_HISTORICAL, SWITCH_FAVORITES } = switchSlice.actions;
 export default switchSlice.reducer;
