@@ -91,19 +91,43 @@ const DayDetail = () => {
                             <div>
                                 <h4>Sunrise</h4>
                                 <div>
-                                    <span>
+                                    <span
+                                        className={css`
+                                            position: relative;
+                                            top: 5px;
+                                        `}
+                                    >
                                         <WbSunnyIcon />
                                     </span>
-                                    <span> {detail.astro.sunrise}</span>
+                                    <span
+                                        className={css`
+                                            font-size: 20px;
+                                        `}
+                                    >
+                                        {' '}
+                                        {detail.astro.sunrise}
+                                    </span>
                                 </div>
                             </div>
                             <div>
                                 <h4>Sunset</h4>
                                 <div>
-                                    <span>
+                                    <span
+                                        className={css`
+                                            position: relative;
+                                            top: 4px;
+                                        `}
+                                    >
                                         <WbTwilightIcon />
                                     </span>
-                                    <span> {detail.astro.sunset}</span>
+                                    <span
+                                        className={css`
+                                            font-size: 20px;
+                                        `}
+                                    >
+                                        {' '}
+                                        {detail.astro.sunset}
+                                    </span>
                                 </div>
                             </div>
                         </div>
@@ -118,19 +142,44 @@ const DayDetail = () => {
                             <div>
                                 <h4>Moonrise</h4>
                                 <div>
-                                    <span>
+                                    <span
+                                        className={css`
+                                            position: relative;
+                                            top: 4px;
+                                        `}
+                                    >
                                         <ModeNightIcon />
                                     </span>
-                                    <span> {detail.astro.moonrise}</span>
+                                    <span
+                                        className={css`
+                                            font-size: 20px;
+                                            margin-left: 5px;
+                                        `}
+                                    >
+                                        {detail.astro.moonrise}
+                                    </span>
                                 </div>
                             </div>
                             <div>
                                 <h4>Moonset</h4>
                                 <div>
-                                    <span>
+                                    <span
+                                        className={css`
+                                            position: relative;
+                                            top: 4px;
+                                        `}
+                                    >
                                         <Brightness4Icon />
                                     </span>
-                                    <span> {detail.astro.moonset}</span>
+                                    <span
+                                        className={css`
+                                            font-size: 20px;
+                                            margin-left: 2px;
+                                        `}
+                                    >
+                                        {' '}
+                                        {detail.astro.moonset}
+                                    </span>
                                 </div>
                             </div>
                             <div>
@@ -155,79 +204,181 @@ const DayDetail = () => {
                                     border-color: #ffffff9e !important;
                                 `}
                             />
-                            <div className="grid-chart">
+                            <div
+                                className={css`
+                                    display: grid;
+                                    grid-template-columns: 1fr 1fr;
+                                    grid-auto-rows: 1fr 1fr;
+                                    & tspan {
+                                        display: none;
+                                    }
+                                `}
+                            >
                                 <div>
-                                    <h4>Precipitation</h4>
-                                    <svg>
-                                        <VictoryPie
-                                            standalone={false}
-                                            width={150}
-                                            height={150}
-                                            innerRadius={30}
-                                            data={[
-                                                {
-                                                    x: '',
-                                                    y: detail.day.totalprecip_mm,
-                                                    fill: '#33c5ff',
-                                                },
-                                                { x: 'total', y: 100 },
-                                            ]}
-                                            colorScale={['#33c5ff', '#ffffff']}
-                                            style={{
-                                                labels: {
-                                                    fill: '#ffffff',
-                                                },
-                                            }}
-                                        />
-                                    </svg>
+                                    <div
+                                        className={css`
+                                            display: flex;
+                                            align-items: center;
+                                        `}
+                                    >
+                                        <h4>Precipitation</h4>
+                                        <span
+                                            className={css`
+                                                margin-left: 5px;
+                                            `}
+                                        >
+                                            (mm/day)
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <p
+                                            className={css`
+                                                position: absolute;
+                                                margin-left: 82px;
+                                                margin-top: 50px;
+                                                font-size: 25px;
+                                            `}
+                                        >
+                                            {detail.day.totalprecip_mm}
+                                        </p>
+                                        <svg
+                                            className={css`
+                                                margin-top: -35px;
+                                            `}
+                                        >
+                                            <VictoryPie
+                                                standalone={false}
+                                                width={200}
+                                                height={200}
+                                                innerRadius={40}
+                                                data={[
+                                                    {
+                                                        x: '',
+                                                        y: detail.day.totalprecip_mm,
+                                                        fill: '#33c5ff',
+                                                    },
+                                                    { x: '', y: 100 },
+                                                ]}
+                                                colorScale={['#33c5ff', '#ffffff']}
+                                                style={{
+                                                    labels: {
+                                                        fill: '#ffffff',
+                                                    },
+                                                }}
+                                            />
+                                        </svg>
+                                    </div>
                                 </div>
                                 <div>
                                     <h4>Humidity</h4>
-                                    <svg>
-                                        <VictoryPie
-                                            standalone={false}
-                                            width={150}
-                                            height={150}
-                                            innerRadius={30}
-                                            data={[
-                                                { x: 'Humidity', y: detail.day.avghumidity, fill: '#33c5ff' },
-                                                { x: 'total', y: 15 },
-                                            ]}
-                                            colorScale={['#33c5ff', '#ffffff']}
-                                        />
-                                    </svg>
+                                    <div>
+                                        <p
+                                            className={css`
+                                                position: absolute;
+                                                margin-left: 75px;
+                                                margin-top: 50px;
+                                                font-size: 25px;
+                                            `}
+                                        >
+                                            {`${detail.day.avghumidity}%`}
+                                        </p>
+                                        <svg
+                                            className={css`
+                                                margin-top: -35px;
+                                            `}
+                                        >
+                                            <VictoryPie
+                                                standalone={false}
+                                                width={200}
+                                                height={200}
+                                                innerRadius={40}
+                                                data={[
+                                                    { x: '', y: detail.day.avghumidity, fill: '#33c5ff' },
+                                                    { x: '', y: 15 },
+                                                ]}
+                                                colorScale={['#33c5ff', '#ffffff']}
+                                            />
+                                        </svg>
+                                    </div>
                                 </div>
                                 <div>
                                     <h4>UV index</h4>
-                                    <svg>
-                                        <VictoryPie
-                                            standalone={false}
-                                            width={150}
-                                            height={150}
-                                            innerRadius={30}
-                                            data={[
-                                                { x: 'UV', y: detail.day.uv, fill: '#33c5ff' },
-                                                { x: 'total', y: 10 },
-                                            ]}
-                                            colorScale={['#33c5ff', '#ffffff']}
-                                        />
-                                    </svg>
+                                    <div>
+                                        <p
+                                            className={css`
+                                                position: absolute;
+                                                margin-left: 90px;
+                                                margin-top: 50px;
+                                                font-size: 25px;
+                                            `}
+                                        >
+                                            {detail.day.uv}
+                                        </p>
+
+                                        <svg
+                                            className={css`
+                                                margin-top: -35px;
+                                            `}
+                                        >
+                                            <VictoryPie
+                                                standalone={false}
+                                                width={200}
+                                                height={200}
+                                                innerRadius={40}
+                                                data={[
+                                                    { x: '', y: detail.day.uv, fill: '#33c5ff' },
+                                                    { x: '', y: 10 },
+                                                ]}
+                                                colorScale={['#33c5ff', '#ffffff']}
+                                            />
+                                        </svg>
+                                    </div>
                                 </div>
                                 <div>
-                                    <h4>Max Wind</h4>
-                                    <svg>
-                                        <VictoryPie
-                                            standalone={false}
-                                            width={180}
-                                            height={150}
-                                            innerRadius={30}
-                                            data={[
-                                                { x: '', y: detail.day.maxwind_kph, fill: '#33c5ff' },
-                                                { x: '', y: 10 },
-                                            ]}
-                                            colorScale={['#33c5ff', '#ffffff']}
-                                        />
-                                    </svg>
+                                    <div
+                                        className={css`
+                                            display: flex;
+                                            align-items: center;
+                                        `}
+                                    >
+                                        <h4>Max Wind</h4>{' '}
+                                        <span
+                                            className={css`
+                                                margin-left: 5px;
+                                            `}
+                                        >
+                                            (km/h)
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <p
+                                            className={css`
+                                                position: absolute;
+                                                margin-left: 75px;
+                                                margin-top: 50px;
+                                                font-size: 25px;
+                                            `}
+                                        >
+                                            {detail.day.maxwind_kph}
+                                        </p>
+                                        <svg
+                                            className={css`
+                                                margin-top: -35px;
+                                            `}
+                                        >
+                                            <VictoryPie
+                                                standalone={false}
+                                                width={200}
+                                                height={200}
+                                                innerRadius={40}
+                                                data={[
+                                                    { x: '', y: detail.day.maxwind_kph, fill: '#33c5ff' },
+                                                    { x: '', y: 100 },
+                                                ]}
+                                                colorScale={['#33c5ff', '#ffffff']}
+                                            />
+                                        </svg>
+                                    </div>
                                 </div>
                             </div>
                         </div>

@@ -44,14 +44,18 @@ const Forecast = (props) => {
             document.getElementById('cloud').style.backgroundPositionY = 'top';
             document.getElementById('cloud').style.backgroundImage = `url(${cloudThunder})`;
             document.getElementById('thunder').style.backgroundImage = `url(${thunder})`;
+        } else if (condition === 'Thundery outbreaks possible') {
+            document.getElementById('cloud').style.backgroundPositionY = 'top';
+            document.getElementById('cloud').style.backgroundImage = `url(${cloudThunder})`;
+            // document.getElementById('thunder').style.backgroundImage = `url(${thunder})`;
         }
     }, [current, condition]);
     return (
         <div
             id="themeColor"
             className={
-                (parseInt(moment().format('hh')) < 7 && moment().format('AA') === 'PM') ||
-                (parseInt(moment().format('hh')) > 6 && moment().format('AA') === 'AM')
+                (6 < parseInt(moment().format('hh')) < 12 && moment().format('AA') === 'AM') ||
+                (1 < parseInt(moment().format('hh')) < 7 && moment().format('AA') === 'PM')
                     ? css`
                           background-color: #3171af;
                           font-family: 'Inter', sans-serif;
@@ -60,7 +64,7 @@ const Forecast = (props) => {
                           height: 1080px;
                       `
                     : css`
-                          background-color: #0059b4;
+                          background-color: #0b2642;
                           font-family: 'Inter', sans-serif;
                           color: #ffffff;
                           text-shadow: 2px 2px 5px #000000;
@@ -100,7 +104,13 @@ const Forecast = (props) => {
                                 background-position: right top;
                             `}
                         >
-                            <div id="mist">
+                            <div
+                                id="mist"
+                                className={css`
+                                    background-size: contain;
+                                    background-repeat: no-repeat;
+                                `}
+                            >
                                 <Container>
                                     <CurrentWeather />
                                     <DailyWeather />

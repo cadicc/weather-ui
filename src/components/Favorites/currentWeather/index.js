@@ -76,6 +76,8 @@ const CurrentWeather = () => {
                                         <span>
                                             <CircleOutlinedIcon
                                                 className={css`
+                                                    position: relative;
+                                                    top: -5px;
                                                     width: 12px !important;
                                                     height: 12px !important;
                                                     margin-left: 3px;
@@ -126,6 +128,8 @@ const CurrentWeather = () => {
                                         <span>
                                             <CircleOutlinedIcon
                                                 className={css`
+                                                    position: relative;
+                                                    top: -5px;
                                                     width: 10px !important;
                                                     height: 10px !important;
                                                     margin-left: 3px;

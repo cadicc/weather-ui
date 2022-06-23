@@ -1,14 +1,16 @@
 import { css } from '@emotion/css';
 import * as moment from 'moment';
 import { Container } from '@mui/material';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import useAxiosHistory from '~/service/history';
 import ChartBar from '../Chart';
 import { set_historical } from '~/features/Historical';
 import { set_chart } from '~/features/SwapChart';
+import CircleOutlinedIcon from '@mui/icons-material/CircleOutlined';
 
 const Historical = () => {
     const { fore, location } = useAxiosHistory();
+    const active = useSelector((state) => state.chart.value);
     const dispatch = useDispatch();
     const data = fore.map((time) => {
         return time.hour.map((hour) => {
@@ -60,17 +62,31 @@ const Historical = () => {
                                 >
                                     <button
                                         onClick={() => dispatch(set_chart(true))}
-                                        className={css`
-                                            font-family: 'Manrope', sans-serif;
-                                            border: 0px solid #ffffff9e;
-                                            border-radius: 0px;
-                                            padding: 5px;
-                                            background-color: #ffffff9e;
-                                            margin: 0 5px;
-                                            &:active {
-                                                background-color: #ffffff;
-                                            }
-                                        `}
+                                        className={
+                                            active
+                                                ? css`
+                                                      font-family: 'Manrope', sans-serif;
+                                                      border: 0px solid #ffffff9e;
+                                                      border-radius: 0px;
+                                                      padding: 5px;
+                                                      background-color: #ffffff;
+                                                      margin: 0 5px;
+                                                      &:active {
+                                                          background-color: #ffffff;
+                                                      }
+                                                  `
+                                                : css`
+                                                      font-family: 'Manrope', sans-serif;
+                                                      border: 0px solid #ffffff9e;
+                                                      border-radius: 0px;
+                                                      padding: 5px;
+                                                      background-color: #ffffff9e;
+                                                      margin: 0 5px;
+                                                      &:active {
+                                                          background-color: #ffffff;
+                                                      }
+                                                  `
+                                        }
                                     >
                                         Temperature
                                     </button>
@@ -82,17 +98,31 @@ const Historical = () => {
                                 >
                                     <button
                                         onClick={() => dispatch(set_chart(false))}
-                                        className={css`
-                                            font-family: 'Manrope', sans-serif;
-                                            border: 0px solid #ffffff9e;
-                                            border-radius: 0px;
-                                            padding: 5px;
-                                            background-color: #ffffff9e;
-                                            margin: 0 5px;
-                                            &:active {
-                                                background-color: #ffffff;
-                                            }
-                                        `}
+                                        className={
+                                            !active
+                                                ? css`
+                                                      font-family: 'Manrope', sans-serif;
+                                                      border: 0px solid #ffffff9e;
+                                                      border-radius: 0px;
+                                                      padding: 5px;
+                                                      background-color: #ffffff;
+                                                      margin: 0 5px;
+                                                      &:active {
+                                                          background-color: #ffffff;
+                                                      }
+                                                  `
+                                                : css`
+                                                      font-family: 'Manrope', sans-serif;
+                                                      border: 0px solid #ffffff9e;
+                                                      border-radius: 0px;
+                                                      padding: 5px;
+                                                      background-color: #ffffff9e;
+                                                      margin: 0 5px;
+                                                      &:active {
+                                                          background-color: #ffffff;
+                                                      }
+                                                  `
+                                        }
                                     >
                                         Humidity
                                     </button>
@@ -146,17 +176,39 @@ const Historical = () => {
                                     justify-content: space-between;
                                 `}
                             >
-                                <div>
-                                    <h3>Nhiệt độ cao nhât</h3>
-                                    <p>{fore[0].day.maxtemp_c}</p>
+                                <div
+                                    className={css`
+                                        width: 200px;
+                                    `}
+                                >
+                                    <h3>High Temperature</h3>
+                                    <p>
+                                        {fore[0].day.maxtemp_c}{' '}
+                                        <CircleOutlinedIcon
+                                            className={css`
+                                                position: relative;
+                                                top: -5px;
+                                                width: 10px !important;
+                                                height: 10px !important;
+                                            `}
+                                        />
+                                    </p>
                                 </div>
-                                <div>
-                                    <h3>Tốc độ gió cao nhất</h3>
+                                <div
+                                    className={css`
+                                        width: 200px;
+                                    `}
+                                >
+                                    <h3>High Wind</h3>
                                     <p>{`${fore[0].day.maxwind_kph} km/h`}</p>
                                 </div>
-                                <div>
-                                    <h3>Độ ẩm trung bình</h3>
-                                    <p>{`${fore[0].day.avghumidity} %`}</p>
+                                <div
+                                    className={css`
+                                        width: 200px;
+                                    `}
+                                >
+                                    <h3>Total Precip</h3>
+                                    <p>{`${fore[0].day.totalprecip_mm} mm`}</p>
                                 </div>
                             </div>
                             <div
@@ -165,20 +217,38 @@ const Historical = () => {
                                     justify-content: space-between;
                                 `}
                             >
-                                <div>
-                                    <h3>Nhiệt độ thấp nhất</h3>
-                                    <p>{fore[0].day.mintemp_c}</p>
+                                <div
+                                    className={css`
+                                        width: 200px;
+                                    `}
+                                >
+                                    <h3>Low Temperature</h3>
+                                    <p>
+                                        {fore[0].day.mintemp_c}
+                                        <CircleOutlinedIcon
+                                            className={css`
+                                                position: relative;
+                                                top: -5px;
+                                                width: 10px !important;
+                                                height: 10px !important;
+                                            `}
+                                        />
+                                    </p>
                                 </div>
-                                <div>
-                                    <h3>Tầm nhìn trung bình</h3>
+                                <div
+                                    className={css`
+                                        width: 200px;
+                                    `}
+                                >
+                                    <h3>Average Vision</h3>
                                     <p>{`${fore[0].day.avgvis_km} km/h`}</p>
                                 </div>
                                 <div
                                     className={css`
-                                        opacity: 0;
+                                        width: 200px;
                                     `}
                                 >
-                                    <h3>Độ ẩm trung bình</h3>
+                                    <h3>Average Humidity</h3>
                                     <p>{`${fore[0].day.avghumidity} %`}</p>
                                 </div>
                             </div>

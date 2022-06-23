@@ -1,13 +1,14 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { css } from '@emotion/css';
 import HeadlessTippy from '@tippyjs/react/headless';
 import { Container } from '@mui/material';
 import useAxiosSearch from '~/service/searchApi';
 import { set_value } from '~/features/Search';
 import { set_fav } from '~/features/favorites/addFavorite';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 const AddFavorite = () => {
     const [searchInput, setSearchInput] = useState('');
@@ -37,6 +38,31 @@ const AddFavorite = () => {
                     className={css`
                         display: block;
                         height: 40px;
+                    `}
+                ></div>
+                <Link
+                    to="/favorites"
+                    className={css`
+                        color: #ffffff;
+                        text-decoration: none;
+                        &:hover {
+                            text-decoration: underline;
+                        }
+                    `}
+                >
+                    <ArrowBackIcon
+                        className={css`
+                            position: relative;
+                            top: 5px;
+                            margin-right: 3px;
+                        `}
+                    />
+                    Back
+                </Link>
+                <div
+                    className={css`
+                        display: block;
+                        height: 20px;
                     `}
                 ></div>
                 <div

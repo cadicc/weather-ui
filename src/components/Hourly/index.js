@@ -77,15 +77,35 @@ const HourlyWeather = () => {
                 <div>
                     <button
                         onClick={() => dispatch(set_chartHourly(false))}
-                        className={css`
-                            border: 0px solid #ffffff9e;
-                            border-radius: 0px;
-                            padding: 5px 5px 12px 5px;
-                            background-color: #ffffff9e;
-                            margin: 0 5px;
-                            &:active {
-                                background-color: #ffffff;
-                        `}
+                        className={
+                            !swapChart
+                                ? css`
+                                      border: 0px solid #ffffff9e;
+                                      border-radius: 0px;
+                                      padding: 5px 5px 12px 5px;
+                                      background-color: #ffffff;
+                                      margin: 0 5px;
+                                      &:active {
+                                          background-color: #ffffff;
+                                      }
+                                      &:hover {
+                                          background-color: #ffffff;
+                                      }
+                                  `
+                                : css`
+                                      border: 0px solid #ffffff9e;
+                                      border-radius: 0px;
+                                      padding: 5px 5px 12px 5px;
+                                      background-color: #ffffff9e;
+                                      margin: 0 5px;
+                                      &:active {
+                                          background-color: #ffffff;
+                                      }
+                                      &:hover {
+                                          background-color: #ffffff;
+                                      }
+                                  `
+                        }
                     >
                         <span
                             className={css`
@@ -99,16 +119,35 @@ const HourlyWeather = () => {
                     </button>
                     <button
                         onClick={() => dispatch(set_chartHourly(true))}
-                        className={css`
-                            border: 0px solid #ffffff9e;
-                            border-radius: 0px;
-                            padding: 5px 5px 12px 5px;
-                            background-color: #ffffff9e;
-                            margin: 0 5px;
-                            &:active {
-                                background-color: #ffffff;
-                            }
-                        `}
+                        className={
+                            swapChart
+                                ? css`
+                                      border: 0px solid #ffffff9e;
+                                      border-radius: 0px;
+                                      padding: 5px 5px 12px 5px;
+                                      background-color: #ffffff;
+                                      margin: 0 5px;
+                                      &:active {
+                                          background-color: #ffffff;
+                                      }
+                                      &:hover {
+                                          background-color: #ffffff;
+                                      }
+                                  `
+                                : css`
+                                      border: 0px solid #ffffff9e;
+                                      border-radius: 0px;
+                                      padding: 5px 5px 12px 5px;
+                                      background-color: #ffffff9e;
+                                      margin: 0 5px;
+                                      &:active {
+                                          background-color: #ffffff;
+                                      }
+                                      &:hover {
+                                          background-color: #ffffff;
+                                      }
+                                  `
+                        }
                     >
                         <span
                             className={css`
