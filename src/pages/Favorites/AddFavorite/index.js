@@ -37,7 +37,7 @@ const AddFavorite = () => {
                 <div
                     className={css`
                         display: block;
-                        height: 40px;
+                        height: 20px;
                     `}
                 ></div>
                 <Link
@@ -97,22 +97,15 @@ const AddFavorite = () => {
                                                 onClick={() => {
                                                     setSearchInput('');
                                                     dispatch(set_fav(result.name));
-                                                    // setData(result);
+                                                    alert('Add completed');
                                                 }}
                                                 className={css`
-                                                    padding: 10px;
+                                                    padding: 5px;
                                                     &:hover {
                                                         background-color: #ffffffc4;
                                                     }
                                                 `}
                                             >
-                                                {/* <Link
-                                                    to="favorites"
-                                                    className={css`
-                                                        text-decoration: none;
-                                                        color: #000;
-                                                    `}
-                                                > */}
                                                 <h4
                                                     className={css`
                                                         margin: 5px 0;
@@ -125,7 +118,6 @@ const AddFavorite = () => {
                                                         margin: 5px 0;
                                                     `}
                                                 >{`${result.name}, ${result.country}`}</p>
-                                                {/* </Link> */}
                                             </li>
                                         );
                                     })}

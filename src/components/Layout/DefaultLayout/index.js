@@ -1,5 +1,3 @@
-import styled from '@emotion/styled';
-
 import NavBar from './NavBar';
 import Header from './Header';
 

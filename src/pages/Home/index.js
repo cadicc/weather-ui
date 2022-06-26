@@ -29,7 +29,7 @@ const Forecast = (props) => {
         } else if (condition === 'Mist') {
             document.getElementById('mist').style.backgroundImage = `url(${mist})`;
         } else if (condition === 'Partly cloudy') {
-            document.getElementById('light').style.backgroundImage = `url(${light})`;
+            // document.getElementById('light').style.backgroundImage = `url(${light})`;
             document.getElementById('cloud').style.backgroundImage = `url(${cloud})`;
         } else if (condition === 'Sunny') {
             document.getElementById('light').style.backgroundImage = `url(${light})`;

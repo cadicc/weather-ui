@@ -281,6 +281,36 @@ const ListFav = () => {
                 </div>
             </div>
         );
+    } else {
+        return (
+            <div
+                className={css`
+                    width: 25%;
+                    height: 100%;
+                    background-color: #33c5ff;
+                `}
+            >
+                <Link to="/favorites/add-favorite">
+                    <div
+                        className={css`
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            padding: 36px 10px;
+                            text-shadow: 1px 1px 2px #000000;
+                        `}
+                    >
+                        <AddIcon
+                            className={css`
+                                width: 50px !important;
+                                height: 50px !important;
+                                color: #ffffff;
+                            `}
+                        />
+                    </div>
+                </Link>
+            </div>
+        );
     }
 };
 export default ListFav;
