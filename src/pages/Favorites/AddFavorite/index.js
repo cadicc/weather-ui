@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { css } from '@emotion/css';
 import HeadlessTippy from '@tippyjs/react/headless';
+import Autocomplete from '@mui/material/Autocomplete';
+import TextField from '@mui/material/TextField';
 import { Container } from '@mui/material';
 import useAxiosSearch from '~/service/searchApi';
 import { set_value } from '~/features/Search';
@@ -12,7 +14,6 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 const AddFavorite = () => {
     const [searchInput, setSearchInput] = useState('');
-    // const [data, setData] = useState([]);
     const { searchApi } = useAxiosSearch();
     const dispatch = useDispatch();
     const listFav = useSelector((state) => state.addFav.value);
@@ -148,6 +149,42 @@ const AddFavorite = () => {
                         ></input>
                     </HeadlessTippy>
                 </div>
+                {/* <div>
+                    <Autocomplete
+                        disablePortal
+                        options={
+                            [
+                                { label: 'The Godfather', id: 1 },
+                                { label: 'Pulp Fiction', id: 2 },
+                            ]
+                            // searchApi.map((data) => {
+                            //     return [{ label: data.name, id: data.id }];
+                            // })
+                        }
+                        renderInput={(params) => (
+                            <TextField
+                                {...params}
+                                label="Search location"
+                                // onChange={(e) => {
+                                //     setSearchInput(e.target.value);
+                                //     dispatch(set_value(e.target.value));
+                                // }}
+                            />
+                        )}
+                        className={css`
+                            margin-top: 20px;
+                            & label {
+                                color: #ffffff;
+                            }
+                            & fieldset {
+                                border-color: #ffffff5e;
+                                &:hover {
+                                    border-color: #ffffff;
+                                }
+                            }
+                        `}
+                    />
+                </div> */}
             </Container>
         </div>
     );

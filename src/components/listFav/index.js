@@ -54,7 +54,7 @@ const ListFav = () => {
                     return (
                         <div
                             className={css`
-                                width: 25%;
+                                width: 27%;
                                 height: 100%;
                                 background-color: #33c5ff;
                                 background-image: url(${sunlight});
@@ -82,17 +82,6 @@ const ListFav = () => {
                                     dispatch(set_activeFav(false));
                                 }}
                             >
-                                {/* <button
-                                className={css`
-                                    position: absolute;
-                                    display: block;
-                                    border: 0px;
-                                    background-color: #ffffff5e;
-                                `}
-                                onClick={() => delete favorites[`${item.location.name}`]}
-                            >
-                                X
-                            </button> */}
                                 <div
                                     className={css`
                                         // background-image: url(${cloud4});
@@ -120,9 +109,14 @@ const ListFav = () => {
                                                 display: flex;
                                                 color: #ffffff;
                                                 justify-content: space-between;
+                                                margin-top: 5px;
                                             `}
                                         >
-                                            <div>
+                                            <div
+                                                className={css`
+                                                    width: 45%;
+                                                `}
+                                            >
                                                 <div>
                                                     <span
                                                         className={css`
@@ -149,7 +143,13 @@ const ListFav = () => {
                                                     <p
                                                         className={css`
                                                             margin: 5px 0;
-                                                            font-size: 14px;
+                                                            font-size: 13px;
+                                                            -o-text-overflow: ellipsis;
+                                                            text-overflow: ellipsis;
+                                                            overflow: hidden;
+                                                            display: -webkit-box;
+                                                            -webkit-box-orient: vertical;
+                                                            -webkit-line-clamp: 2;
                                                         `}
                                                     >
                                                         {item.current.condition.text}
@@ -158,87 +158,100 @@ const ListFav = () => {
                                             </div>
                                             <div
                                                 className={css`
-                                                    font-size: 14px;
+                                                    width: 55%;
+                                                    display: flex;
+                                                    justify-content: center;
+                                                    font-size: 12px;
                                                 `}
                                             >
-                                                <div>
-                                                    <span>
-                                                        <DeviceThermostatIcon
+                                                <div
+                                                    className={css`
+                                                        margin: 0 5px;
+                                                    `}
+                                                >
+                                                    <div>
+                                                        <span>
+                                                            <DeviceThermostatIcon
+                                                                className={css`
+                                                                    width: 15px !important;
+                                                                    height: 15px !important;
+                                                                    margin-bottom: -2px;
+                                                                    margin-right: 5px;
+                                                                `}
+                                                            />
+                                                        </span>
+                                                        <span
                                                             className={css`
-                                                                width: 15px !important;
-                                                                height: 15px !important;
-                                                                margin-bottom: -2px;
-                                                                margin-right: 5px;
+                                                                margin: 5px 0;
                                                             `}
-                                                        />
-                                                    </span>
-                                                    <span
+                                                        >
+                                                            {item.current.feelslike_c}
+                                                        </span>
+                                                        <span>
+                                                            <CircleOutlinedIcon
+                                                                className={css`
+                                                                    position: relative;
+                                                                    top: -5px;
+                                                                    width: 10px !important;
+                                                                    height: 10px !important;
+                                                                    margin-left: 3px;
+                                                                `}
+                                                            />
+                                                        </span>
+                                                    </div>
+                                                    <div
                                                         className={css`
                                                             margin: 5px 0;
                                                         `}
                                                     >
-                                                        {item.current.feelslike_c}
-                                                    </span>
-                                                    <span>
-                                                        <CircleOutlinedIcon
-                                                            className={css`
-                                                                position: relative;
-                                                                top: -5px;
-                                                                width: 10px !important;
-                                                                height: 10px !important;
-                                                                margin-left: 3px;
-                                                            `}
-                                                        />
-                                                    </span>
+                                                        <span>
+                                                            <RemoveRedEyeIcon
+                                                                className={css`
+                                                                    width: 15px !important;
+                                                                    height: 15px !important;
+                                                                    margin-bottom: -2px;
+                                                                    margin-right: 5px;
+                                                                `}
+                                                            />
+                                                        </span>
+                                                        <span>{`${item.current.vis_km} km`}</span>
+                                                    </div>
                                                 </div>
                                                 <div
                                                     className={css`
-                                                        margin: 5px 0;
+                                                        margin: 0 5px;
                                                     `}
                                                 >
-                                                    <span>
-                                                        <RemoveRedEyeIcon
-                                                            className={css`
-                                                                width: 15px !important;
-                                                                height: 15px !important;
-                                                                margin-bottom: -2px;
-                                                                margin-right: 5px;
-                                                            `}
-                                                        />
-                                                    </span>
-                                                    <span>{`${item.current.vis_km} km`}</span>
-                                                </div>
-                                            </div>
-                                            <div
-                                                className={css`
-                                                    font-size: 14px;
-                                                `}
-                                            >
-                                                <div>
-                                                    <span>
-                                                        <AirIcon
-                                                            className={css`
-                                                                width: 15px !important;
-                                                                height: 15px !important;
-                                                                margin-bottom: -2px;
-                                                                margin-right: 5px;
-                                                            `}
-                                                        />
-                                                    </span>
-                                                    <span>{`${item.current.wind_kph} km/h`}</span>
-                                                </div>
-                                                <div>
-                                                    <span>
-                                                        <InvertColorsIcon
-                                                            className={css`
-                                                                width: 15px !important;
-                                                                height: 15px !important;
-                                                                margin-bottom: -2px;
-                                                                margin-right: 5px;
-                                                            `}
-                                                        />
-                                                    </span>
-                                                    <span>{`${item.current.humidity} %`}</span>
+                                                    <div>
+                                                        <span>
+                                                            <AirIcon
+                                                                className={css`
+                                                                    width: 15px !important;
+                                                                    height: 15px !important;
+                                                                    margin-bottom: -2px;
+                                                                    margin-right: 5px;
+                                                                `}
+                                                            />
+                                                        </span>
+                                                        <span>{`${item.current.wind_kph} km/h`}</span>
+                                                    </div>
+                                                    <div
+                                                        className={css`
+                                                            margin: 5px 0;
+                                                        `}
+                                                    >
+                                                        <span>
+                                                            <InvertColorsIcon
+                                                                className={css`
+                                                                    width: 15px !important;
+                                                                    height: 15px !important;
+                                                                    margin-bottom: -2px;
+                                                                    margin-right: 5px;
+                                                                `}
+                                                            />
+                                                        </span>
+                                                        <span>{`${item.current.humidity} %`}</span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -253,10 +266,6 @@ const ListFav = () => {
                         width: 25%;
                         height: 100%;
                         background-color: #33c5ff;
-                        // background-image: url(${sunlight});
-                        // background-size: cover;
-                        // background-repeat: no-repeat;
-                        // background-position: 70px;
                     `}
                 >
                     <Link to="/favorites/add-favorite">
@@ -265,7 +274,7 @@ const ListFav = () => {
                                 display: flex;
                                 justify-content: center;
                                 align-items: center;
-                                padding: 36px 10px;
+                                padding: 48px 10px;
                                 text-shadow: 1px 1px 2px #000000;
                             `}
                         >
