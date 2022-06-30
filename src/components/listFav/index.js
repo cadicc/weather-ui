@@ -274,7 +274,7 @@ const ListFav = () => {
                                 display: flex;
                                 justify-content: center;
                                 align-items: center;
-                                padding: 48px 10px;
+                                padding: 38px 10px;
                                 text-shadow: 1px 1px 2px #000000;
                             `}
                         >
@@ -305,7 +305,7 @@ const ListFav = () => {
                             display: flex;
                             justify-content: center;
                             align-items: center;
-                            padding: 36px 10px;
+                            padding: 38px 10px;
                             text-shadow: 1px 1px 2px #000000;
                         `}
                     >

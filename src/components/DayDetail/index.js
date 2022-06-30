@@ -214,33 +214,16 @@ const DayDetail = () => {
                                     }
                                 `}
                             >
-                                <div>
-                                    <div
-                                        className={css`
-                                            display: flex;
-                                            align-items: center;
-                                        `}
-                                    >
-                                        <h4>Precipitation</h4>
-                                        <span
-                                            className={css`
-                                                margin-left: 5px;
-                                            `}
-                                        >
-                                            (mm/day)
-                                        </span>
-                                    </div>
+                                <div
+                                    className={css`
+                                        max-width: 200px;
+                                        & svg {
+                                            width: 200px;
+                                        }
+                                    `}
+                                >
+                                    <h4>Precipitation</h4>
                                     <div>
-                                        <p
-                                            className={css`
-                                                position: absolute;
-                                                margin-left: 82px;
-                                                margin-top: 50px;
-                                                font-size: 25px;
-                                            `}
-                                        >
-                                            {detail.day.totalprecip_mm}
-                                        </p>
                                         <svg
                                             className={css`
                                                 margin-top: -35px;
@@ -267,21 +250,23 @@ const DayDetail = () => {
                                                 }}
                                             />
                                         </svg>
-                                    </div>
-                                </div>
-                                <div>
-                                    <h4>Humidity</h4>
-                                    <div>
                                         <p
                                             className={css`
-                                                position: absolute;
-                                                margin-left: 75px;
-                                                margin-top: 50px;
+                                                text-align: center;
                                                 font-size: 25px;
                                             `}
                                         >
-                                            {`${detail.day.avghumidity}%`}
+                                            {detail.day.totalprecip_mm} mm
                                         </p>
+                                    </div>
+                                </div>
+                                <div
+                                    className={css`
+                                        max-width: 200px;
+                                    `}
+                                >
+                                    <h4>Humidity</h4>
+                                    <div>
                                         <svg
                                             className={css`
                                                 margin-top: -35px;
@@ -299,22 +284,23 @@ const DayDetail = () => {
                                                 colorScale={['#33c5ff', '#ffffff']}
                                             />
                                         </svg>
-                                    </div>
-                                </div>
-                                <div>
-                                    <h4>UV index</h4>
-                                    <div>
                                         <p
                                             className={css`
-                                                position: absolute;
-                                                margin-left: 90px;
-                                                margin-top: 50px;
+                                                text-align: center;
                                                 font-size: 25px;
                                             `}
                                         >
-                                            {detail.day.uv}
+                                            {`${detail.day.avghumidity}%`}
                                         </p>
-
+                                    </div>
+                                </div>
+                                <div
+                                    className={css`
+                                        max-width: 200px;
+                                    `}
+                                >
+                                    <h4>UV index</h4>
+                                    <div>
                                         <svg
                                             className={css`
                                                 margin-top: -35px;
@@ -332,35 +318,23 @@ const DayDetail = () => {
                                                 colorScale={['#33c5ff', '#ffffff']}
                                             />
                                         </svg>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div
-                                        className={css`
-                                            display: flex;
-                                            align-items: center;
-                                        `}
-                                    >
-                                        <h4>Max Wind</h4>{' '}
-                                        <span
-                                            className={css`
-                                                margin-left: 5px;
-                                            `}
-                                        >
-                                            (km/h)
-                                        </span>
-                                    </div>
-                                    <div>
                                         <p
                                             className={css`
-                                                position: absolute;
-                                                margin-left: 75px;
-                                                margin-top: 50px;
+                                                text-align: center;
                                                 font-size: 25px;
                                             `}
                                         >
-                                            {detail.day.maxwind_kph}
+                                            {detail.day.uv}
                                         </p>
+                                    </div>
+                                </div>
+                                <div
+                                    className={css`
+                                        max-width: 200px;
+                                    `}
+                                >
+                                    <h4>Max Wind</h4>
+                                    <div>
                                         <svg
                                             className={css`
                                                 margin-top: -35px;
@@ -378,6 +352,14 @@ const DayDetail = () => {
                                                 colorScale={['#33c5ff', '#ffffff']}
                                             />
                                         </svg>
+                                        <p
+                                            className={css`
+                                                text-align: center;
+                                                font-size: 25px;
+                                            `}
+                                        >
+                                            {detail.day.maxwind_kph} km/h
+                                        </p>
                                     </div>
                                 </div>
                             </div>

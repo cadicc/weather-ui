@@ -2,7 +2,7 @@ import React from 'react';
 import { useState, useRef } from 'react';
 import { IconButton } from '@mui/material';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMoon, faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { css } from '@emotion/css';
 import { useSelector, useDispatch } from 'react-redux';
 import HeadlessTippy from '@tippyjs/react/headless';
@@ -92,9 +92,6 @@ const Header = () => {
                             justify-content: flex-end;
                         `}
                     >
-                        <IconButton aria-label="Dark" size="small">
-                            <FontAwesomeIcon icon={faMoon} inverse />
-                        </IconButton>
                         <div
                             className={css`
                                 // display: flex;
